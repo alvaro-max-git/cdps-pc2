@@ -2,6 +2,9 @@ from lxml import etree
 import shutil
 import subprocess
 import os
+import logging
+
+log = logging.getLogger('manage-p2')
 
 def create_xml(base_xml, vm_name, image, bridges):
 	new_xml = f"{vm_name}.xml"
@@ -58,26 +61,19 @@ def main ():
 		create_xml(base_xml, f"s{i+1}", f"s{i+1}.qcow2", ["LAN1"])
 		create_xml(base_xml, "lb", "lb.qcow2", ["LAN1", "LAN2"])
 		create_xml(base_xml, "c1", "c1.qcow2", ["LAN2"])
+	
+def copia_app(app, dst, vm_name):
+	#Ruta de la app	
+	app_path = os.path.join(os.getcwd(), "productpage")
+     # Copiar la carpeta de la app a la máquina virtual
+	try:
+		subprocess.run(["sudo", "virt-copy-in", "-a", f"{vm_name}.qcow2", 
+			app, "/"], check=True)
+	except subprocess.CalledProcessError as e:
+		log.error(f"Error al copiar la carpeta de la app a {vm_name}: {e}")
+	log.debug(f"Carpeta de la app copiada a {vm_name}.")
+
+
 
 if __name__ == "__main__":
 	main()
-
-def instala_dependencias(requirements):
-	#Parseo requirements.txt
-	modulos = []
-	try:
-		with open(requirements) as f:
-			modulos.append(f.readlines())
-	except Exception as e:
-		print(f"Error al leer el archivo {requirements}")
-		print(e)
-		return
-	#Instalo dependencias	
-	try:
-		print("Instalando dependencias...")
-		for modulo in modulos:
-			subprocess.run(["pip3", "install", modulo], check=True)
-		print("Dependencias instaladas correctamente.")
-	except subprocess.CalledProcessError as e:
-		print(f"Error al instalar las dependencias: {e}")
-	
