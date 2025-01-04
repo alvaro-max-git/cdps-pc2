@@ -34,7 +34,7 @@ class VM:
 
   #Creamos definicion xml
     log.debug(f"Creando definición XML para {self.name}...")
-    base_xml = "plantilla-vm-pc1.xml"
+    base_xml = "PC2.xml"
     if self.name == "lb":
       bridges =["LAN1", "LAN2"]
     elif self.name == "c1":

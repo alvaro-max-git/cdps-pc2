@@ -20,7 +20,7 @@ def instala_dependencias(requirements):
 		log.info("Instalando dependencias...")
 		for modulo in modulos:
 			subprocess.run(["pip3", "install", modulo], check=True)
-		log.info("Dependencias instaladas correctamente.")
+		log.info("Dependencias instaladas correctamente.")	
 	except subprocess.CalledProcessError as e:
 		log.error(f"Error al instalar las dependencias: {e}")
 		

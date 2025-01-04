@@ -1,13 +1,15 @@
 import os
 import shutil
 import subprocess
+import sys
 
 def setup_environment():
     # Definir rutas
     base_dir = "/mnt/tmp/alvaro.pablo"
-    
+    base_image = "/lab/cdps/pc1/cdps-vm-base-p2.qcow2"
+
     src_files = [
-        "/lab/cdps/pc1/plantilla-vm-pc1.xml",
+        base_image,
         os.path.join(os.getcwd(), "PC2.xml") # Ruta relativa al archivo XML
     ]
     
@@ -31,6 +33,14 @@ def setup_environment():
         print("Entorno preparado correctamente.")
     except subprocess.CalledProcessError as e:
         print(f"Error al preparar el entorno: {e}")
+
+    try:
+
+        subprocess.run(
+            ["qemu-img", "create", "-F", "qcow2", "-f", "qcow2", "-b", base_image, "PC2.qcow2"]
+        )
+    except subprocess.CalledProcessError as e:
+        sys.exit(1)
 
 # Ejecutar la función si se ejecuta el script directamente
 # (no se ejecuta si se importa como módulo)
