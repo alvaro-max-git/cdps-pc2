@@ -62,18 +62,19 @@ def main ():
 		create_xml(base_xml, "lb", "lb.qcow2", ["LAN1", "LAN2"])
 		create_xml(base_xml, "c1", "c1.qcow2", ["LAN2"])
 	
-def copia_app(app, dst, vm_name):
+def copia_app(vm_name):
 	#Ruta de la app	
 	app_path = os.path.join(os.getcwd(), "productpage")
-     # Copiar la carpeta de la app a la máquina virtual
 	try:
+		# Copiar la carpeta de la app a la máquina virtual
 		subprocess.run(["sudo", "virt-copy-in", "-a", f"{vm_name}.qcow2", 
-			app, "/"], check=True)
+			app_path, "/"], check=True)
+		#Copiar el script de gestión de la app
+		subprocess.run(["sudo", "virt-copy-in", "-a", f"{vm_name}.qcow2",
+			"productpage_app_setup.py", "/"], check=True)
 	except subprocess.CalledProcessError as e:
 		log.error(f"Error al copiar la carpeta de la app a {vm_name}: {e}")
 	log.debug(f"Carpeta de la app copiada a {vm_name}.")
-
-
 
 if __name__ == "__main__":
 	main()

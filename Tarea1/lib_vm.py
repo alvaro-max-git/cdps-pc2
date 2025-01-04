@@ -2,7 +2,7 @@ import logging
 import os
 import subprocess
 import sys
-from utilidades import create_xml
+from utilidades import create_xml, copia_app
 
 log = logging.getLogger('manage-p2')
 
@@ -146,7 +146,9 @@ iface eth0 inet static
           index_html_path, "/var/www/html"], check=True)
       log.debug(f"Archivo 'index.html' copiado a {self.name}.")
       log.info(f"Página de bienvenida de {self.name} estará disponible en {ip}:80 al arrancar la maquina virtual.")
-  
+      #Copiar la app a la máquina virtual
+      copia_app(self.name)
+
     else:
       #cutre else, configuro el lb
       interfaces_content = f"""
