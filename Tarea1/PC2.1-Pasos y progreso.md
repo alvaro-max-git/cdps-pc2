@@ -21,13 +21,20 @@ Basado en el de la PC1. Automatiza la creación de la máquina virtual.
    cp PC2.xml /mnt/tmp/alvaro.pablo
 ```
 
-#### Creamos la imagen
+#### Creamos la imagen (hecho)
 ```bash
 qemu-img create -F qcow2 -f qcow2 -b cdps-vm-base-p2.qcow2 PC2.qcow2
 ```
 
+
 ---
 # Arranque máquina virtual
+
+### Copiamos script o scripts a la máquina virtual antes de arrancarla
+
+```bash
+sudo virt-copy-in -a PC2.qcow2 productpage_app_setup.py /home/cdps
+```
 
 ### Basarnos en el de la PC1
 ```bash
