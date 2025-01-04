@@ -41,19 +41,19 @@ def arranca_app():
 	#Editar productpage_monolith.py
 	#sed -i '/app = Flask(__name__)/a \\\ngrup_num = os.getenv("GRUP_NUM", "Default Group")\napp.config[\'TEMPLATES_AUTO_RELOAD\'] = True\n' productpage_monolith.py
 	subprocess.run(
-		"sed -i '/app = Flask(__name__)/a \\ngrup_num = os.getenv(\"GRUP_NUM\", \"Default Group\")\\napp.config[\"TEMPLATES_AUTO_RELOAD\"] = True\\n' productpage_monolith.py",
+		"sed -i '/app = Flask(__name__)/a \\grup_num = os.getenv(\"GRUP_NUM\", \"Default Group\")\\napp.config[\"TEMPLATES_AUTO_RELOAD\"] = True\\n' productpage_monolith.py",
 		shell=True,
 		check=True
 	)
 	
-	# Modificar la línea de index.html
+	# Modificar la línea de index.html. ESTA LÍNEA NO FUNCIONA
 	subprocess.run(
 		"sed -i \"/return render_template(\\'index.html\\', serviceTable=table)/s/)/, grup_num=grup_num)/\" productpage_monolith.py",
 		shell=True,
 		check=True
 	)
 
-	# Modificar la línea de productpage.html
+	# Modificar la línea de productpage.html. ESTA LÍNEA NO FUNCIONA
 	subprocess.run(
 		"sed -i \"/return render_template(\\'productpage.html\\'/, /user=user/s/)/, grup_num=grup_num)/\" productpage_monolith.py",
 		shell=True,
