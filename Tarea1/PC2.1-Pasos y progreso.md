@@ -1,20 +1,25 @@
 # Script preparación escenario
 
-### Basarnos en el de la PC1
-Automatiza la creación de la máquina virtual.
+Nombre: `pc21-prep-environment.py`
 
-#### Creamos carpeta
+Basado en el de la PC1. Automatiza la creación de la máquina virtual.
+
+#### Creamos carpeta (hecho)
 ```bash
 /mnt/tmp/alvaro.pablo
 ```
 
-#### Copiamos base
+#### Copiamos base (hecho)
 ```bash
 /lab/cdps/p2/cdps-vm-base-p2.qcow2
 ```
 
-#### Copiamos xml desde carpeta personal a `alvaro.pablo`
+#### Copiamos xml desde carpeta personal a `alvaro.pablo` (hecho)
 *(ver cambios en prueba manual).*
+
+```bash
+   cp PC2.xml /mnt/tmp/alvaro.pablo
+```
 
 #### Creamos la imagen
 ```bash
@@ -22,7 +27,6 @@ qemu-img create -F qcow2 -f qcow2 -b cdps-vm-base-p2.qcow2 PC2.qcow2
 ```
 
 ---
-
 # Arranque máquina virtual
 
 ### Basarnos en el de la PC1
