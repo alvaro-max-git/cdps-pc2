@@ -6,7 +6,8 @@ import sys
 def setup_environment():
     # Definir rutas
     base_dir = "/mnt/tmp/alvaro.pablo"
-    base_image = "/lab/cdps/pc1/cdps-vm-base-p2.qcow2"
+    base_image = "/lab/cdps/p2/cdps-vm-base-p2.qcow2"
+    vm_image = "/mnt/tmp/alvaro.pablo/PC2.qcow2"
 
     src_files = [
         base_image,
@@ -37,7 +38,7 @@ def setup_environment():
     try:
 
         subprocess.run(
-            ["qemu-img", "create", "-F", "qcow2", "-f", "qcow2", "-b", base_image, "PC2.qcow2"]
+            ["qemu-img", "create", "-F", "qcow2", "-f", "qcow2", "-b", base_image, vm_image],
         )
     except subprocess.CalledProcessError as e:
         sys.exit(1)
