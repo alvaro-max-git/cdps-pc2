@@ -39,6 +39,14 @@ def manage_vm():
 
     print("Máquina virtual configurada y arrancada correctamente.")
 
+    try:
+        subprocess.Popen(
+            ["xterm", "-T", "Console PC2", "-geometry", "200x50", "-e", "sudo", "virsh", "console", "PC2"]
+        )
+        print("Consola abierta en una ventana separada.")
+    except FileNotFoundError:
+        print("Error: xterm no está instalado. No se puede abrir la consola.")
+
 # Ejecución principal
 if __name__ == "__main__":
     try:
