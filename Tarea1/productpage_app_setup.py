@@ -48,17 +48,19 @@ def arranca_app():
 	
 	# Modificar la línea de index.html. ESTA LÍNEA NO FUNCIONA
 	subprocess.run(
-		"sed -i \"/return render_template(\\'index.html\\', serviceTable=table)/s/)/, grup_num=grup_num)/\" productpage_monolith.py",
+    "sed -i \"s|return render_template('index.html', serviceTable=table)|return render_template('index.html', serviceTable=table, grup_num=grup_num)|\" productpage_monolith.py",
+    	shell=True,
+    	check=True
+	)
+
+
+	# Modificar la línea de productpage.html. ESTA LÍNEA NO FUNCIONA
+	subprocess.run(
+		"sed -i \"s|user=user)|user=user, grup_num=grup_num)|\" productpage_monolith.py",
 		shell=True,
 		check=True
 	)
 
-	# Modificar la línea de productpage.html. ESTA LÍNEA NO FUNCIONA
-	subprocess.run(
-		"sed -i \"/return render_template(\\'productpage.html\\'/, /user=user/s/)/, grup_num=grup_num)/\" productpage_monolith.py",
-		shell=True,
-		check=True
-	)
 
 	#crear variable de entorno
 	subprocess.run("export GRUP_NUM=39", shell=True, check=True)
