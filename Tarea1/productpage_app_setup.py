@@ -2,6 +2,9 @@ import subprocess
 import logging
 import os
 
+#Crear variable de entorno
+os.environ["GRUP_NUM"] = "39"
+
 #Configuración del logger
 log = logging.getLogger('manage-p2')
 
@@ -46,24 +49,19 @@ def arranca_app():
 		check=True
 	)
 	
-	# Modificar la línea de index.html. ESTA LÍNEA NO FUNCIONA
+	# Modificar la línea de index.html.
 	subprocess.run(
     "sed -i \"s|return render_template('index.html', serviceTable=table)|return render_template('index.html', serviceTable=table, grup_num=grup_num)|\" productpage_monolith.py",
     	shell=True,
     	check=True
 	)
 
-
-	# Modificar la línea de productpage.html. ESTA LÍNEA NO FUNCIONA
+	# Modificar la línea de productpage.html. 
 	subprocess.run(
 		"sed -i \"s|user=user)|user=user, grup_num=grup_num)|\" productpage_monolith.py",
 		shell=True,
 		check=True
 	)
-
-
-	#crear variable de entorno
-	subprocess.run("export GRUP_NUM=39", shell=True, check=True)
 
 	#Arrancar la app
 	subprocess.run(["python3", "productpage_monolith.py", "9080"], check=True)
