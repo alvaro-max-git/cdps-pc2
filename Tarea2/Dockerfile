@@ -7,8 +7,9 @@ ENV GROUP_NUM=39
 #Instala dependencias
 RUN apt-get update
 #Copiamos todos los archivos de este directorio al directorio de trabajo
-RUN python3 tarea2.py
 COPY . .
+#Ejecutar el script de configuración > clona el repositorio y edita los archivos
+RUN python3 tarea2.py
 #Instalamos las dependencias necesarias
 RUN pip3 install -r practica_creativa2/bookinfo/src/productpage/requirements.txt
 #Exponemos el puerto 9080
