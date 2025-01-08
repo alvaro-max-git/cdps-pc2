@@ -1,0 +1,16 @@
+#Imagen a usar
+FROM python:3.7.7-slim
+#Directorio de trabajo
+WORKDIR /
+#Variable de entorno GROUP_NUM, aún no hace nada.
+ENV GROUP_NUM=39 
+#Instala dependencias
+RUN apt-get update
+#Copiamos todos los archivos de este directorio al directorio de trabajo
+COPY . .
+#Instalamos las dependencias necesarias
+RUN pip3 install -r practica_creativa2/bookinfo/src/productpage/requirements.txt
+#Exponemos el puerto 9080
+EXPOSE 9080
+#Ejecutamos el archivo productpage_monolith.py para arrancar la app en el servidor.
+CMD python3 practica_creativa2/bookinfo/src/productpage/productpage_monolith.py 9080
