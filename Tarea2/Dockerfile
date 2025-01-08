@@ -5,7 +5,7 @@ WORKDIR /
 #Variable de entorno GROUP_NUM, aún no hace nada.
 ENV GROUP_NUM=39 
 #Instala dependencias
-RUN apt-get update
+RUN apt-get update && apt-get install -y python3 python3-pip git && apt-get clean
 #Copiamos todos los archivos de este directorio al directorio de trabajo
 COPY . .
 #Ejecutar el script de configuración > clona el repositorio y edita los archivos
