@@ -11,13 +11,13 @@ services:
     environment:
       - SERVICE_VERSION=v1
     volumes:
-      - details_data:/var/lib/ratings
+      - ./ratings:/opt/microservices
 
   reviews:
     container_name: reviews-g39
     build:
-      context: ./reviews
-      dockerfile: reviews-wlpcfg/Dockerfile
+      context: ./reviews/reviews-wlpcfg
+      dockerfile: Dockerfile
     ports:
       - "9082:9080"
     environment:
@@ -52,7 +52,6 @@ services:
       - details_data:/var/lib/productpage
 
 volumes:
-  ratings_data:
   reviews_data:
   details_data:
   productpage_data:
