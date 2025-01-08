@@ -1,0 +1,58 @@
+version: '1'
+
+services:
+  ratings:
+    container_name: ratings-g39
+    build:
+      context: ./ratings
+      dockerfile: Dockerfile
+    ports:
+      - "9081:9080"
+    environment:
+      - SERVICE_VERSION=v1
+    volumes:
+      - details_data:/var/lib/ratings
+
+  reviews:
+    container_name: reviews-g39
+    build:
+      context: ./reviews
+      dockerfile: reviews-wlpcfg/Dockerfile
+    ports:
+      - "9082:9080"
+    environment:
+      - SERVICE_VERSION=v1
+      - ENABLE_RATINGS=true
+    volumes:
+      - details_data:/var/lib/reviews
+
+  details:
+    container_name: details-g39
+    build:
+      context: ./details
+      dockerfile: Dockerfile
+    ports:
+      - "9083:9080"
+    environment:
+      - SERVICE_VERSION=v1
+      - ENABLE_EXTERNAL_BOOK_SERVICE=true
+    volumes:
+      - details_data:/var/lib/details
+
+  productpage:
+    container_name: productpage-g39
+    build:
+      context: ./productpage
+      dockerfile: Dockerfile
+    ports:
+      - "9080:9080"
+    environment:
+      - GROUP_NUM=39
+    volumes:
+      - details_data:/var/lib/productpage
+
+volumes:
+  ratings_data:
+  reviews_data:
+  details_data:
+  productpage_data:
