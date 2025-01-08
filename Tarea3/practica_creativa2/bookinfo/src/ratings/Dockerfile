@@ -4,4 +4,4 @@ COPY . .
 ENV SERVICE_VERSION=v1
 RUN npm install
 EXPOSE 9080
-CMD node ratings.js 9080
+CMD node run /opt/microservices/ratings.js 9080
