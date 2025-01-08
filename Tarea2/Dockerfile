@@ -7,6 +7,7 @@ ENV GROUP_NUM=39
 #Instala dependencias
 RUN apt-get update
 #Copiamos todos los archivos de este directorio al directorio de trabajo
+RUN python3 tarea2.py
 COPY . .
 #Instalamos las dependencias necesarias
 RUN pip3 install -r practica_creativa2/bookinfo/src/productpage/requirements.txt
