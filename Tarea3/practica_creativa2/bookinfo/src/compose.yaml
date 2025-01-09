@@ -52,6 +52,7 @@ services:
       - productpage_data:/var/lib/productpage
 
 volumes:
+  ratings_data:
   reviews_data:
   details_data:
   productpage_data:
