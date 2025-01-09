@@ -1,4 +1,4 @@
-version: '1'
+version: '3'
 
 services:
   ratings:
@@ -11,7 +11,7 @@ services:
     environment:
       - SERVICE_VERSION=v1
     volumes:
-      - ./ratings:/opt/microservices
+      - ratings_data:/var/lib/ratings
 
   reviews:
     container_name: reviews-g39
@@ -24,7 +24,7 @@ services:
       - SERVICE_VERSION=v1
       - ENABLE_RATINGS=true
     volumes:
-      - details_data:/var/lib/reviews
+      - reviews_data:/var/lib/reviews
 
   details:
     container_name: details-g39
@@ -49,7 +49,7 @@ services:
     environment:
       - GROUP_NUM=39
     volumes:
-      - details_data:/var/lib/productpage
+      - productpage_data:/var/lib/productpage
 
 volumes:
   reviews_data:
