@@ -12,7 +12,7 @@ log = logging.getLogger('manage-p2')
 # Ruta base del script
 REPO_URL = "https://github.com/CDPS-ETSIT/practica_creativa2"
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-PRODUCTPAGE_DIR = os.path.join(BASE_DIR, "practica_creativa2/bookinfo/src/productpage")
+PRODUCTPAGE_DIR = os.path.join(BASE_DIR, "")
 
 # Cambia el directorio temporalmente	
 @contextlib.contextmanager
@@ -72,21 +72,21 @@ def edicion_archivos(productpage_dir=PRODUCTPAGE_DIR):
 		#Editar productpage_monolith.py
 		#sed -i '/app = Flask(__name__)/a \\\ngrup_num = os.getenv("GRUP_NUM", "Default Group")\napp.config[\'TEMPLATES_AUTO_RELOAD\'] = True\n' productpage_monolith.py
 		subprocess.run(
-			"sed -i '/app = Flask(__name__)/a \\grup_num = os.getenv(\"GRUP_NUM\", \"Default Group\")\\napp.config[\"TEMPLATES_AUTO_RELOAD\"] = True\\n' productpage_monolith.py",
+			"sed -i '/app = Flask(__name__)/a \\grup_num = os.getenv(\"GRUP_NUM\", \"Default Group\")\\napp.config[\"TEMPLATES_AUTO_RELOAD\"] = True\\n' productpage.py",
 			shell=True,
 			check=True
 		)
 		
 		# Modificar la línea de index.html.
 		subprocess.run(
-		"sed -i \"s|return render_template('index.html', serviceTable=table)|return render_template('index.html', serviceTable=table, grup_num=grup_num)|\" productpage_monolith.py",
+		"sed -i \"s|return render_template('index.html', serviceTable=table)|return render_template('index.html', serviceTable=table, grup_num=grup_num)|\" productpage.py",
 			shell=True,
 			check=True
 		)
 
 		# Modificar la línea de productpage.html. 
 		subprocess.run(
-			"sed -i \"s|user=user)|user=user, grup_num=grup_num)|\" productpage_monolith.py",
+			"sed -i \"s|user=user)|user=user, grup_num=grup_num)|\" productpage.py",
 			shell=True,
 			check=True
 		)
