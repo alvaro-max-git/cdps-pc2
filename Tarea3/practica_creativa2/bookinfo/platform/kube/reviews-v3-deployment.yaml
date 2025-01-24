@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: reviews
-        image: <GROUP_NUMBER>/reviews-v3
+        image: g39/reviews-v3
         imagePullPolicy: IfNotPresent
         env:
         - name: LOG_DIR

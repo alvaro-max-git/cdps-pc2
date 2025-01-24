@@ -10,7 +10,7 @@ services:
     ports:
       - "9081:9080"
     environment:
-      - SERVICE_VERSION=v1
+      - SERVICE_VERSION=v2
     volumes:
       - ratings_data:/var/lib/ratings
 
@@ -19,11 +19,11 @@ services:
     build:
       context: ./reviews/reviews-wlpcfg
       dockerfile: Dockerfile
-    image: g39/reviews-v1
+    image: g39/reviews-v2
     ports:
       - "9082:9080"
     environment:
-      - SERVICE_VERSION=v1
+      - SERVICE_VERSION=v2
       - ENABLE_RATINGS=true
     volumes:
       - reviews_data:/var/lib/reviews
