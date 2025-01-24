@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productpage-v1
+  labels:
+    app: productpage
+    version: v1
+spec:
+  replicas: 1  
+  selector:
+    matchLabels:
+      app: productpage
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: productpage
+        version: v1
+    spec:
+      containers:
+      - name: productpage
+        image: src-productpage 
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 9080
+        env:
+          - name: GRUP_NUM
+            value: "39"
+---

@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: details-v1
+  labels:
+    app: details
+    version: v1
+spec:
+  # Factor de replicación 3 para details
+  replicas: 3
+  selector:
+    matchLabels:
+      app: details
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: details
+        version: v1
+    spec:
+      containers:
+      - name: details
+        image: src-details
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 9080
+        env:
+          - name: SERVICE_VERSION
+            value: "v1"
+          - name: ENABLE_EXTERNAL_BOOK_SERVICE
+            value: "true"
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: details
+  labels:
+    app: details
+    service: details
+spec:
+  selector:
+    app: details
+  ports:
+    - port: 9080
+      targetPort: 9080
+      protocol: TCP
+      name: http
