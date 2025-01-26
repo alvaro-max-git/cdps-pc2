@@ -2,7 +2,7 @@
 FROM python:3.7.7-slim
 #Directorio de trabajo
 WORKDIR /
-#Variable de entorno GROUP_NUM
+#Variable de entorno GRUP_NUM
 ENV GRUP_NUM=39
 #Instala dependencias
 RUN apt-get update && apt-get install -y python3 python3-pip git && apt-get clean

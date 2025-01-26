@@ -9,5 +9,4 @@ ENV ENABLE_EXTERNAL_BOOK_SERVICE = true
 COPY . .
 #Exponemos el puerto 9080
 EXPOSE 9080
-#Ejecutamos el archivo productpage_monolith.py para arrancar la app en el servidor.
 CMD ruby /opt/microservices/details.rb 9080
