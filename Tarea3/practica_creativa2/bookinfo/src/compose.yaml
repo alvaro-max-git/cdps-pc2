@@ -19,12 +19,12 @@ services:
     build:
       context: ./reviews/reviews-wlpcfg
       dockerfile: Dockerfile
-    image: reviews-v1/g39
+    image: reviews-v2/g39
     ports:
       - "9082:9080"
     environment:
-      - SERVICE_VERSION=v1
-      - ENABLE_RATINGS=false
+      - SERVICE_VERSION=v2
+      - ENABLE_RATINGS=true
     volumes:
       - reviews_data:/var/lib/reviews
 
