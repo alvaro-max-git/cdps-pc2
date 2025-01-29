@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: productpage
-        image: g39/productpage 
+        image: productpage/g39
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 9080

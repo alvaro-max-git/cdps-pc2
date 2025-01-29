@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: details
-        image: g39/details
+        image: details/g39
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 9080

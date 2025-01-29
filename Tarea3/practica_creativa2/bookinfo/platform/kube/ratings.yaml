@@ -36,10 +36,11 @@ spec:
     spec:
       containers:
       - name: ratings
-        image: g39/ratings
+        image: ratings/g39
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
         securityContext:
           runAsUser: 1000
+
 ---
